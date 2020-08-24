@@ -33,8 +33,7 @@ catch(UserServiceException e) {
 	Status status = new Status();
 	status.setStatus(StatusType.FAILURE);
 	status.setMessage(e.getMessage());
-	return status;
-	
+	return status;	
 }
 }
 

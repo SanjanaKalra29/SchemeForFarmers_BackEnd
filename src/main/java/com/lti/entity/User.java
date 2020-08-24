@@ -4,19 +4,17 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "User_Details")
+@Table(name = "Userrr_Details")
 @NamedQuery(name = "logincheck", query = "select u.id from User u where u.email = :em and u.password = :pw")
 @NamedQuery(name = "count", query = "select count(u.id) from User u where u.email = :em")
 public class User {
 	@Id
-	@Column(name = "Userid")
-	@GeneratedValue
+	@Column(name = "User_id")
 	private int id;
 
 	@Column(name = "First_name")
@@ -103,11 +101,11 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPhoneno() {
+	public long getPhoneno() {
 		return phoneno;
 	}
 
-	public void setPhoneno(String phoneno) {
+	public void setPhoneno(long phoneno) {
 		this.phoneno = phoneno;
 	}
 

@@ -19,12 +19,12 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public void register(User user) {
-		if(userRepo.isUserAvailable(user.getEmail())) {
+	
+		 if(!userRepo.isUserAvailable(user.getEmail())) {
 			userRepo.save(user);
 		}
 		else
 			throw new UserServiceException("User Already register");
-		
 	}
 	
 	@Override
