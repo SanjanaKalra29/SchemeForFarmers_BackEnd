@@ -18,20 +18,43 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@PostMapping(path="/register")
+	public Status register(@RequestBody User user) {
+try {
+	userService.register(user);
+	Status status = new Status();
+	status.setStatus(StatusType.SUCCESS);
+	status.setMessage("Registration Successful");
+	return status;
+}
+catch(UserServiceException e) {
+	userService.register(user);
+	Status status = new Status();
+	status.setStatus(StatusType.FAILURE);
+	status.setMessage(e.getMessage());
+	return status;	
+}
+}
 
 	@PostMapping("/login")
 	public LoginStatus login(@RequestBody LoginDto logindto) {
 
 		try {
-			// System.out.println(logindto.getEmail() + " " + logindto.getPassword());
+			System.out.println(logindto.getEmail());
 			User user = userService.login(logindto.getEmail(), logindto.getPassword());
+
+			// request.getSession().setAttribute("Userid", user.getId());
+
 			LoginStatus loginstatus = new LoginStatus();
 			loginstatus.setStatus(StatusType.SUCCESS);
 			loginstatus.setMessage("Login Sucessful");
 			loginstatus.setUserId(user.getId());
 			loginstatus.setName(user.getFirstname());
 			return loginstatus;
+
 		} catch (UserServiceException e) {
+
 			LoginStatus loginstatus = new LoginStatus();
 			loginstatus.setStatus(StatusType.FAILURE);
 			loginstatus.setMessage(e.getMessage());

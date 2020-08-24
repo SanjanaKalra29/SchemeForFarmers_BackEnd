@@ -15,17 +15,26 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepo;
 
 	@Override
+	public void register(User user) {
+
+		if (!userRepo.isUserAvailable(user.getEmail())) {
+			userRepo.save(user);
+		} else
+			throw new UserServiceException("User Already registered");
+	}
+
+	@Override
 	public User login(String email, String password) {
 		try {
 			if (!userRepo.isUserAvailable(email)) {
 				throw new UserServiceException("User not registered");
 			}
 			int id = userRepo.findByEmailAndPass(email, password);
-			System.out.println(id);
 			User user = userRepo.findbyId(id);
 			return user;
 		} catch (EmptyResultDataAccessException e) {
 			throw new UserServiceException("Incorrect Email/Password");
 		}
 	}
+
 }

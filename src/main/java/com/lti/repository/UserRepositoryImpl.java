@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.entity.User;
 
@@ -11,6 +12,13 @@ import com.lti.entity.User;
 public class UserRepositoryImpl implements UserRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
+
+	@Override
+	@Transactional
+	public void save(User user) {
+		entityManager.persist(user);
+
+	}
 
 	@Override
 	public int findByEmailAndPass(String email, String pass) {
@@ -21,7 +29,8 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	public boolean isUserAvailable(String email) {
-		return (Long) entityManager.createQuery("Select count(c.id) from User c where c.email = :em")
+
+		return (Long) entityManager.createQuery("select count(u.id) from User u where u.email = :em")
 				.setParameter("em", email).getSingleResult() == 1 ? true : false;
 	}
 
@@ -29,4 +38,5 @@ public class UserRepositoryImpl implements UserRepository {
 	public User findbyId(int id) {
 		return entityManager.find(User.class, id);
 	}
+
 }
