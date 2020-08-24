@@ -1,34 +1,18 @@
-package com.lti.entity;
+package com.lti.dto;
 
-import java.time.LocalDate;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "Userdetails")
-@NamedQuery(name = "logincheck", query = "select u.id from User u where u.email = :em and u.password = :pw")
-public class User {
-	@Id
-	@Column(name = "Userid")
-	@GeneratedValue
-	private int id;
-
+public class RegisterDto {
+	
 	private String firstname;
 
 	private String lastname;
 
 	private String role;
 
-	private LocalDate dob;
+	private String dob;
 
 	private String email;
 
-	private String phoneno;
+	private long phoneno;
 
 	private String gender;
 
@@ -41,14 +25,6 @@ public class User {
 	private String password;
 
 	private String pancard;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getFirstname() {
 		return firstname;
@@ -74,11 +50,11 @@ public class User {
 		this.role = role;
 	}
 
-	public LocalDate getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(LocalDate dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 
@@ -90,11 +66,11 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPhoneno() {
+	public long getPhoneno() {
 		return phoneno;
 	}
 
-	public void setPhoneno(String phoneno) {
+	public void setPhoneno(long phoneno) {
 		this.phoneno = phoneno;
 	}
 
