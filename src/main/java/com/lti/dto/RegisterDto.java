@@ -1,65 +1,30 @@
-package com.lti.entity;
+package com.lti.dto;
 
-import java.time.LocalDate;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "User_Details")
-@NamedQuery(name = "logincheck", query = "select u.id from User u where u.email = :em and u.password = :pw")
-@NamedQuery(name = "count", query = "select count(u.id) from User u where u.email = :em")
-public class User {
-	@Id
-	@Column(name = "User_id")
-	private int id;
-
-	@Column(name = "First_name")
+public class RegisterDto {
+	
 	private String firstname;
 
-	@Column(name = "Last_name")
 	private String lastname;
 
-	@Column(name = "Role")
 	private String role;
 
-	@Column(name = "DOB")
-	private LocalDate dob;
+	private String dob;
 
-	@Column(name = "Email")
 	private String email;
 
-	@Column(name = "Phone_Number")
 	private long phoneno;
 
-	@Column(name = "Gender")
 	private String gender;
 
-	@Column(name = "Address")
 	private String address;
 
-	@Column(name = "Aadhar_Card")
 	private long Aadharcard;
 
-	@Column(name = "Username")
 	private String username;
 
-	@Column(name = "Password")
 	private String password;
 
-	@Column(name = "Pancard")
 	private String pancard;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getFirstname() {
 		return firstname;
@@ -85,12 +50,12 @@ public class User {
 		this.role = role;
 	}
 
-	public LocalDate getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(LocalDate localDate) {
-		this.dob = localDate;
+	public void setDob(String dob) {
+		this.dob = dob;
 	}
 
 	public String getEmail() {

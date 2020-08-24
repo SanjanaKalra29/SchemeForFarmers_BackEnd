@@ -15,6 +15,15 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepo;
 
 	@Override
+	public void register(User user) {
+
+		if (!userRepo.isUserAvailable(user.getEmail())) {
+			userRepo.save(user);
+		} else
+			throw new UserServiceException("User Already registered");
+	}
+
+	@Override
 	public User login(String email, String password) {
 		try {
 			if (!userRepo.isUserAvailable(email)) {
@@ -27,4 +36,5 @@ public class UserServiceImpl implements UserService {
 			throw new UserServiceException("Incorrect Email/Password");
 		}
 	}
+
 }
