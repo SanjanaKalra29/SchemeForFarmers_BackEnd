@@ -42,15 +42,20 @@ catch(UserServiceException e) {
 	public LoginStatus login(@RequestBody LoginDto logindto) {
 
 		try {
-			// System.out.println(logindto.getEmail() + " " + logindto.getPassword());
+			System.out.println(logindto.getEmail());
 			User user = userService.login(logindto.getEmail(), logindto.getPassword());
+
+			// request.getSession().setAttribute("Userid", user.getId());
+
 			LoginStatus loginstatus = new LoginStatus();
 			loginstatus.setStatus(StatusType.SUCCESS);
 			loginstatus.setMessage("Login Sucessful");
 			loginstatus.setUserId(user.getId());
 			loginstatus.setName(user.getFirstname());
 			return loginstatus;
+
 		} catch (UserServiceException e) {
+
 			LoginStatus loginstatus = new LoginStatus();
 			loginstatus.setStatus(StatusType.FAILURE);
 			loginstatus.setMessage(e.getMessage());

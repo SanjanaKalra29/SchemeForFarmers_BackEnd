@@ -34,7 +34,6 @@ public class UserServiceImpl implements UserService {
 				throw new UserServiceException("User not registered");
 			}
 			int id = userRepo.findByEmailAndPass(email, password);
-			System.out.println(id);
 			User user = userRepo.findbyId(id);
 			return user;
 		} catch (EmptyResultDataAccessException e) {
