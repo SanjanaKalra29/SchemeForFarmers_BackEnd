@@ -21,7 +21,11 @@ public class UserRepositoryImpl implements UserRepository {
 
 	@Override
 	public boolean isUserAvailable(String email) {
-		return (Long) entityManager.createQuery("Select count(c.id) from User c where c.email = :em")
+//		return (Long) entityManager.createNamedQuery("count").setParameter("em", email).getSingleResult() == 1 ? true
+//				: false;
+		System.out.println(entityManager.createQuery("select u.email from User u where u.email = :em")
+				.setParameter("em", email).getFirstResult());
+		return (Long) entityManager.createQuery("select count(u.id) from User u where u.email = :em")
 				.setParameter("em", email).getSingleResult() == 1 ? true : false;
 	}
 

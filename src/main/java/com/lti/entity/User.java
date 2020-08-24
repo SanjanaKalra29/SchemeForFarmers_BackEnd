@@ -7,35 +7,48 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "UserDetails")
+@Table(name = "User_Details")
 @NamedQuery(name = "logincheck", query = "select u.id from User u where u.email = :em and u.password = :pw")
+@NamedQuery(name = "count", query = "select count(u.id) from User u where u.email = :em")
 public class User {
 	@Id
-	@Column(name = "Userid")
+	@Column(name = "User_id")
 	private int id;
 
+	@Column(name = "First_name")
 	private String firstname;
 
+	@Column(name = "Last_name")
 	private String lastname;
 
+	@Column(name = "Role")
 	private String role;
 
+	@Column(name = "DOB")
 	private String dob;
 
+	@Column(name = "Email")
 	private String email;
 
+	@Column(name = "Phone_Number")
 	private long phoneno;
 
+	@Column(name = "Gender")
 	private String gender;
 
+	@Column(name = "Address")
 	private String address;
 
+	@Column(name = "Aadhar_Card")
 	private long Aadharcard;
 
+	@Column(name = "Username")
 	private String username;
 
+	@Column(name = "Password")
 	private String password;
 
+	@Column(name = "Pancard")
 	private String pancard;
 
 	public int getId() {
