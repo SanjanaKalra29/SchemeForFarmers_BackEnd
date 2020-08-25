@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.controller.UserController.Status.StatusType;
 import com.lti.dto.LoginDto;
+import com.lti.dto.RegisterDto;
 import com.lti.entity.User;
 import com.lti.exception.UserServiceException;
 import com.lti.service.UserService;
@@ -18,24 +19,28 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
-	@PostMapping(path="/register")
-	public Status register(@RequestBody User user) {
-try {
-	userService.register(user);
-	Status status = new Status();
-	status.setStatus(StatusType.SUCCESS);
-	status.setMessage("Registration Successful");
-	return status;
-}
-catch(UserServiceException e) {
-	userService.register(user);
-	Status status = new Status();
-	status.setStatus(StatusType.FAILURE);
-	status.setMessage(e.getMessage());
-	return status;	
-}
-}
+
+	@PostMapping(path = "/register")
+	public Status register(@RequestBody RegisterDto regdto) {
+		try {
+			System.out.println(regdto.getUser().getFullname());
+			System.out.println(regdto.getAddress().getAddressLine1());
+			// System.out.println(regdto.getLanddetails().getArea());
+			if (userService.register(regdto)) {
+				Status status = new Status();
+				status.setStatus(StatusType.SUCCESS);
+				status.setMessage("Registration Successful");
+				return status;
+			} else {
+				throw new UserServiceException("Registration Unsucessful");
+			}
+		} catch (UserServiceException e) {
+			Status status = new Status();
+			status.setStatus(StatusType.FAILURE);
+			status.setMessage(e.getMessage());
+			return status;
+		}
+	}
 
 	@PostMapping("/login")
 	public LoginStatus login(@RequestBody LoginDto logindto) {
@@ -50,7 +55,7 @@ catch(UserServiceException e) {
 			loginstatus.setStatus(StatusType.SUCCESS);
 			loginstatus.setMessage("Login Sucessful");
 			loginstatus.setUserId(user.getId());
-			loginstatus.setName(user.getFirstname());
+			loginstatus.setName(user.getFullname());
 			return loginstatus;
 
 		} catch (UserServiceException e) {

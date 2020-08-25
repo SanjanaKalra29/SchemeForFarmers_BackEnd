@@ -1,9 +1,8 @@
 package com.lti.entity;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -14,20 +13,15 @@ import javax.persistence.Table;
 @NamedQuery(name = "count", query = "select count(u.id) from User u where u.email = :em")
 public class User {
 	@Id
+	@GeneratedValue
 	@Column(name = "User_id")
 	private int id;
 
-	@Column(name = "First_name")
-	private String firstname;
-
-	@Column(name = "Last_name")
-	private String lastname;
+	@Column(name = "Full_name")
+	private String fullname;
 
 	@Column(name = "Role")
 	private String role;
-
-	@Column(name = "DOB")
-	private LocalDate dob;
 
 	@Column(name = "Email")
 	private String email;
@@ -35,23 +29,20 @@ public class User {
 	@Column(name = "Phone_Number")
 	private long phoneno;
 
-	@Column(name = "Gender")
-	private String gender;
-
-	@Column(name = "Address")
-	private String address;
-
 	@Column(name = "Aadhar_Card")
 	private long Aadharcard;
-
-	@Column(name = "Username")
-	private String username;
 
 	@Column(name = "Password")
 	private String password;
 
 	@Column(name = "Pancard")
 	private String pancard;
+
+	@Column(name = "Account_Number")
+	private String accountNumber;
+
+	@Column(name = "Ifsc_Code")
+	private String ifscCode;
 
 	public int getId() {
 		return id;
@@ -61,20 +52,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getFullname() {
+		return fullname;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
 
 	public String getRole() {
@@ -83,14 +66,6 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
-	}
-
-	public LocalDate getDob() {
-		return dob;
-	}
-
-	public void setDob(LocalDate localDate) {
-		this.dob = localDate;
 	}
 
 	public String getEmail() {
@@ -109,36 +84,12 @@ public class User {
 		this.phoneno = phoneno;
 	}
 
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 	public long getAadharcard() {
 		return Aadharcard;
 	}
 
 	public void setAadharcard(long aadharcard) {
 		Aadharcard = aadharcard;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 	public String getPassword() {
@@ -155,6 +106,22 @@ public class User {
 
 	public void setPancard(String pancard) {
 		this.pancard = pancard;
+	}
+
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	public String getIfsc_Code() {
+		return ifscCode;
+	}
+
+	public void setIfsc_Code(String ifscCode) {
+		this.ifscCode = ifscCode;
 	}
 
 }
