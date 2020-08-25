@@ -1,125 +1,37 @@
 package com.lti.dto;
 
+import com.lti.entity.Address;
+import com.lti.entity.LandDetails;
+import com.lti.entity.User;
+
 public class RegisterDto {
-	
-	private String firstname;
 
-	private String lastname;
+	private LandDetails landdetails;
+	private User user;
+	private Address address;
 
-	private String role;
-
-	private String dob;
-
-	private String email;
-
-	private long phoneno;
-
-	private String gender;
-
-	private String address;
-
-	private long Aadharcard;
-
-	private String username;
-
-	private String password;
-
-	private String pancard;
-
-	public String getFirstname() {
-		return firstname;
+	public LandDetails getLanddetails() {
+		return landdetails;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public void setLanddetails(LandDetails landdetails) {
+		this.landdetails = landdetails;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public User getUser() {
+		return user;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public String getDob() {
-		return dob;
-	}
-
-	public void setDob(String dob) {
-		this.dob = dob;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public long getPhoneno() {
-		return phoneno;
-	}
-
-	public void setPhoneno(long phoneno) {
-		this.phoneno = phoneno;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
-	}
-
-	public long getAadharcard() {
-		return Aadharcard;
-	}
-
-	public void setAadharcard(long aadharcard) {
-		Aadharcard = aadharcard;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getPancard() {
-		return pancard;
-	}
-
-	public void setPancard(String pancard) {
-		this.pancard = pancard;
 	}
 
 }

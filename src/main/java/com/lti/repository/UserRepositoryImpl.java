@@ -6,6 +6,8 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lti.entity.Address;
+import com.lti.entity.LandDetails;
 import com.lti.entity.User;
 
 @Repository
@@ -17,6 +19,13 @@ public class UserRepositoryImpl implements UserRepository {
 	@Transactional
 	public void save(User user) {
 		entityManager.persist(user);
+
+	}
+
+	@Override
+	@Transactional
+	public void saveLandDetails(LandDetails landDetails) {
+		entityManager.persist(landDetails);
 
 	}
 
@@ -35,8 +44,21 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
+	public int getUserId(String email) {
+
+		return (Integer) entityManager.createQuery("select u.id from User u where u.email = :em")
+				.setParameter("em", email).getSingleResult();
+	}
+
+	@Override
 	public User findbyId(int id) {
 		return entityManager.find(User.class, id);
+	}
+
+	@Override
+	@Transactional
+	public void saveAddress(Address address) {
+		entityManager.persist(address);
 	}
 
 }

@@ -26,16 +26,16 @@ public class CropTest {
 	void CropAdd() {
 		Crop c = new Crop();
 		c.setName("Rice");
-		c.setCrop_type("Rabi");
-		c.setFertilizer_type("Urea");
+		c.setCropType("Rabi");
+		c.setFertilizerType("Urea");
 		c.setQuantity(123);
-		c.setSoil_pH(8);
-		c.setDate_added_on(LocalDate.of(2020, 1, 31));
-		c.setBase_price(208);
-		c.setFarmer_id("F001");
+		c.setSoilPH(8);
+		c.setDateAddedOn(LocalDate.of(2020, 1, 31));
+		c.setBasePrice(208);
+		c.setFarmerId(100);
 		c.setStatus("Sold");
-		c.setStart_date(LocalDate.of(2020, 2, 3));
-		c.setEnd_date(LocalDate.of(2020, 3, 31));
+		c.setStartDate(LocalDate.of(2020, 2, 3));
+		c.setEndDate(LocalDate.of(2020, 3, 31));
 		
 		cropServ.register(c);
 
