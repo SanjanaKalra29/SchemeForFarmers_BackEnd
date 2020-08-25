@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -38,6 +39,10 @@ public class Crop {
 	private LocalDate start_date;
 	
 	private LocalDate end_date;
+	
+	@OneToOne(mappedBy = "crop")
+	private Bid bid;
+	
 
 	public int getId() {
 		return id;

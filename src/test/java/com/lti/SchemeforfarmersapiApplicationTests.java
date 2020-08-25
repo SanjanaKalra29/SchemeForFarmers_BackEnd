@@ -34,19 +34,18 @@ class SchemeforfarmersapiApplicationTests {
 
 		User u = new User();
 
-		u.setId(40);
 		u.setFirstname("Amit");
 		u.setLastname("Patel");
 		u.setRole("Farmer");
 		u.setDob(LocalDate.of(1981, 1, 31));
-		u.setEmail("amt@li");
+		u.setEmail("ami-t@li");
 		u.setPhoneno(90261689);
 		u.setGender("Male");
 		u.setPassword("12345");
 		u.setAddress("abc nagar");
 		u.setAadharcard(1212125);
 		u.setUsername("amit");
-		u.setPassword("Amit@123");
+		u.setPassword("Amt@123");
 		u.setPancard("AE123123");
 
 		userServ.register(u);
@@ -57,7 +56,7 @@ class SchemeforfarmersapiApplicationTests {
 
 	@Test
 	void loginUser() {
-		User SavedUser = userServ.login("amt@li", "Amit@123");
+		User SavedUser = userServ.login("aimt@li", "Amit@123");
 		assertThat(SavedUser).isNotNull();
 	}
 }

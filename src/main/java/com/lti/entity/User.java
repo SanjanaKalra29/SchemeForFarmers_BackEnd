@@ -4,16 +4,21 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "User_Details")
+@Table(name = "Usr_Details")
 @NamedQuery(name = "logincheck", query = "select u.id from User u where u.email = :em and u.password = :pw")
 @NamedQuery(name = "count", query = "select count(u.id) from User u where u.email = :em")
 public class User {
+	
 	@Id
+	@GeneratedValue
 	@Column(name = "User_id")
 	private int id;
 
@@ -52,7 +57,7 @@ public class User {
 
 	@Column(name = "Pancard")
 	private String pancard;
-
+	
 	public int getId() {
 		return id;
 	}
