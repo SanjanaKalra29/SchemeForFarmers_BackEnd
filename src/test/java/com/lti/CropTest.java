@@ -22,7 +22,7 @@ public class CropTest {
 	//@Autowired
 	//private CropRepository cropRepo;
 	
-	@Test
+	/* @Test
 	void CropAdd() {
 		Crop c = new Crop();
 		c.setName("Rice");
@@ -38,7 +38,7 @@ public class CropTest {
 		c.setEndDate(LocalDate.of(2020, 3, 31));
 		
 		cropServ.register(c);
-
+*/
 		//Crop SavedCrop = cropRepo.findbyId(c.getId());
 		//assertThat(SavedCrop).isNotNull();
 

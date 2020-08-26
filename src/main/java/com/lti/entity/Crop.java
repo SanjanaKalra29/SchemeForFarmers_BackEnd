@@ -11,8 +11,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/*
 @Entity
-@Table(name = "CropDetails")
+@Table(name = "CropDetails")*/
 public class Crop {
 	@Id
 	@GeneratedValue
@@ -38,12 +39,6 @@ public class Crop {
 	private String status;
 	
 	private LocalDate startDate;
-	
-
-	//private LocalDate end_date;
-	
-	//@OneToOne(mappedBy = "crop")
-	//private Bid bid;
 
 	private LocalDate endDate;
 

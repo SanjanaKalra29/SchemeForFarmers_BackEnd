@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Usr_Details")
+@Table(name = "Ur_Details")
 @NamedQuery(name = "logincheck", query = "select u.id from User u where u.email = :em and u.password = :pw")
 @NamedQuery(name = "count", query = "select count(u.id) from User u where u.email = :em")
 public class User {

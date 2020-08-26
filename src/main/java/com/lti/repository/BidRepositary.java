@@ -8,6 +8,6 @@ public interface BidRepositary {
 	
 	public void save(Bid b);
 	
-	public List<Bid> list= showAllBidByCrpId();
+	//public List<Bid> list= showAllBidByCrpId();
 
 }
