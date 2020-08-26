@@ -15,11 +15,10 @@ public class Bid {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "Crop_id")
 	private int id;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "User_Id")
+	@JoinColumn(name = "Bidder_Id")
 	private User user;
 
 	@OneToOne(cascade = CascadeType.ALL)
