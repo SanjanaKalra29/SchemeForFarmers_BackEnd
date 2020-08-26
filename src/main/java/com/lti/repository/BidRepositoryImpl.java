@@ -23,4 +23,11 @@ public class BidRepositoryImpl implements BidRepository {
 				.getResultList();
 		return bids;
 	}
+
+	@Override
+	@Transactional
+	public void save(Bid bid) {
+		entityManager.persist(bid);
+
+	}
 }

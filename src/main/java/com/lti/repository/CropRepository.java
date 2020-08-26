@@ -10,4 +10,6 @@ public interface CropRepository {
 
 	List<Crop> findCrops();
 
+	Crop findbyId(int id);
+
 }

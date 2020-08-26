@@ -6,15 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.lti.dto.PlaceBidDto;
 import com.lti.dto.bidsDto;
 import com.lti.entity.Bid;
+import com.lti.entity.Crop;
+import com.lti.entity.User;
+import com.lti.exception.BidServiceException;
 import com.lti.exception.CropServiceException;
 import com.lti.repository.BidRepository;
+import com.lti.repository.CropRepository;
+import com.lti.repository.UserRepository;
 
 @Service
 public class BidServiceImpl implements BidService {
 	@Autowired
 	private BidRepository bidrepo;
+
+	@Autowired
+	private CropRepository cropRepo;
+
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public List<bidsDto> getBids(int id) {
@@ -32,6 +44,23 @@ public class BidServiceImpl implements BidService {
 			return sbids;
 		} catch (EmptyResultDataAccessException e) {
 			throw new CropServiceException("No crops available");
+		}
+	}
+
+	@Override
+	public boolean savebid(PlaceBidDto placebiddto) {
+		try {
+			Bid bid = new Bid();
+			Crop crop = cropRepo.findbyId(placebiddto.getCropid());
+
+			User bidder = userRepo.findbyId(placebiddto.getUserid());
+			bid.setCrop(crop);
+			bid.setUser(bidder);
+			bid.setAmount(placebiddto.getAmount());
+			bidrepo.save(bid);
+			return true;
+		} catch (EmptyResultDataAccessException e) {
+			throw new BidServiceException("Failed to add bid");
 		}
 	}
 
