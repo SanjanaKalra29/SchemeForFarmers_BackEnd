@@ -1,9 +1,12 @@
 package com.lti.service;
 
-import com.lti.entity.Bid;
+import java.util.List;
+
+import com.lti.dto.bidsDto;
 
 public interface BidService {
-	
-	public void addbid(Bid b);
+
+	List<bidsDto> getBids(int id);
 
 }
+
