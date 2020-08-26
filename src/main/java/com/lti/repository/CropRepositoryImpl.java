@@ -30,4 +30,9 @@ public class CropRepositoryImpl implements CropRepository {
 		return crops;
 	}
 
+	@Override
+	public Crop findbyId(int id) {
+		return entityManager.find(Crop.class, id);
+	}
+
 }
