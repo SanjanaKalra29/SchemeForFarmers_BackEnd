@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Bid_Tbl")
-@NamedQuery(name = "bidAll ", query = "select b from Bid b where b.cropid = :ci")
+//@NamedQuery(name = "bidAll ", query = "select b from Bid b where b.cropid = :ci")
 public class Bid {
 	
   @Id

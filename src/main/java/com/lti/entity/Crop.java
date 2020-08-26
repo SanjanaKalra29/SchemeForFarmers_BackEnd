@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -48,11 +47,10 @@ public class Crop {
 	@Column(name = "start_Date")
 	private LocalDate startDate;
 
-<<<<<<< HEAD
-=======
+
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Column(name = "end_Date")
->>>>>>> 604020f28bed201a9a6c341154c4f3074fe5f198
+
 	private LocalDate endDate;
 	@OneToOne
 	@JoinColumn(name= "User_id") //FK
