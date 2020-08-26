@@ -1,5 +1,7 @@
 package com.lti.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -18,6 +20,14 @@ public class CropRepositoryImpl implements CropRepository {
 	@Transactional
 	public void save(Crop crop) {
 		entityManager.persist(crop);
+	}
+
+	@Override
+	@Transactional
+	public List<Crop> findCrops() {
+
+		List crops = entityManager.createNamedQuery("getCrops").getResultList();
+		return crops;
 	}
 
 }

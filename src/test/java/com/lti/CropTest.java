@@ -1,7 +1,5 @@
 package com.lti;
 
-import java.time.LocalDate;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -9,16 +7,16 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
-import com.lti.entity.Crop;
 import com.lti.service.CropService;
 
 @SpringBootTest
-@AutoConfigureTestDatabase(replace=Replace.NONE)
+@AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
 public class CropTest {
-	
+
 	@Autowired
 	private CropService cropServ;
+
 	//@Autowired
 	//private CropRepository cropRepo;
 	
@@ -41,6 +39,7 @@ public class CropTest {
 */
 		//Crop SavedCrop = cropRepo.findbyId(c.getId());
 		//assertThat(SavedCrop).isNotNull();
+
 
 	}
 }

@@ -42,7 +42,7 @@ public class User {
 	private String pancard;
 
 	@Column(name = "Account_Number")
-	private String accountNumber;
+	private long accountNumber;
 
 	@Column(name = "Ifsc_Code")
 	private String ifscCode;
@@ -111,16 +111,24 @@ public class User {
 		this.pancard = pancard;
 	}
 
-	public String getAccountNumber() {
+	public String getIfsc_Code() {
+		return ifscCode;
+	}
+
+	public long getAccountNumber() {
 		return accountNumber;
 	}
 
-	public void setAccountNumber(String accountNumber) {
+	public void setAccountNumber(long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 
-	public String getIfsc_Code() {
+	public String getIfscCode() {
 		return ifscCode;
+	}
+
+	public void setIfscCode(String ifscCode) {
+		this.ifscCode = ifscCode;
 	}
 
 	public void setIfsc_Code(String ifscCode) {

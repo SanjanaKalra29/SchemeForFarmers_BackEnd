@@ -46,6 +46,7 @@ class SchemeforfarmersapiApplicationTests {
 		User SavedUser = userRepo.findbyId(u.getId());
 		assertThat(SavedUser).isNotNull();
 		*/
+
 	}
 
 	@Test
