@@ -50,6 +50,8 @@ public class CropServiceImpl implements CropService {
 			for (Crop crop : crops) {
 				ShowAllCropsDto scrop = new ShowAllCropsDto();
 				scrop.setId(crop.getId());
+				scrop.setName(crop.getName());
+				scrop.setSoilPh(crop.getSoilPh());
 				scrop.setCropType(crop.getCropType());
 				scrop.setFertilizerType(crop.getFertilizerType());
 				scrop.setBasePrice(crop.getBasePrice());
