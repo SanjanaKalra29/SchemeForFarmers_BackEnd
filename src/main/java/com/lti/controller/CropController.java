@@ -1,15 +1,20 @@
 package com.lti.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lti.controller.CropController.Status.StatusType;
+import com.lti.dto.CropDto;
+import com.lti.dto.CropsDto;
 import com.lti.entity.Crop;
-import com.lti.exception.UserServiceException;
+import com.lti.exception.CropServiceException;
 import com.lti.service.CropService;
+import com.lti.status.Status;
 
 @RestController
 @CrossOrigin
@@ -19,45 +24,43 @@ public class CropController {
 	private CropService cropService;
 
 	@PostMapping(path = "/cropregister")
-	public Status register(@RequestBody Crop crop) {
+	public Status register(@RequestBody CropDto cropdto) {
 		try {
-			cropService.register(crop);
+			cropService.register(cropdto);
 			Status status = new Status();
-			status.setStatus(StatusType.SUCCESS);
+			status.setStatus(com.lti.status.Status.StatusType.SUCCESS);
 			status.setMessage("Registration Successful");
 			return status;
-		} catch (UserServiceException e) {
-			cropService.register(crop);
+		} catch (CropServiceException e) {
+
 			Status status = new Status();
-			status.setStatus(StatusType.FAILURE);
+			status.setStatus(com.lti.status.Status.StatusType.FAILURE);
 			status.setMessage(e.getMessage());
 			return status;
 
 		}
 	}
 
-	public static class Status {
-		private StatusType Status;
-		private String Message;
+	@GetMapping(path = "/crops")
+	public CropsDto register() {
+		try {
+			List<Crop> crops = cropService.getCrops();
+			CropsDto cropdto = new CropsDto();
+			cropdto.setCrops(crops);
+			Status status = new Status();
+			status.setStatus(com.lti.status.Status.StatusType.SUCCESS);
+			status.setMessage("Crops Available");
+			cropdto.setStatus(status);
+			return cropdto;
+		} catch (CropServiceException e) {
 
-		public StatusType getStatus() {
-			return Status;
-		}
-
-		public void setStatus(StatusType status) {
-			Status = status;
-		}
-
-		public String getMessage() {
-			return Message;
-		}
-
-		public void setMessage(String message) {
-			Message = message;
-		}
-
-		public static enum StatusType {
-			SUCCESS, FAILURE;
+			Status status = new Status();
+			status.setStatus(com.lti.status.Status.StatusType.FAILURE);
+			status.setMessage(e.getMessage());
+			CropsDto cropdto = new CropsDto();
+			cropdto.setStatus(status);
+			return cropdto;
 		}
 	}
+
 }

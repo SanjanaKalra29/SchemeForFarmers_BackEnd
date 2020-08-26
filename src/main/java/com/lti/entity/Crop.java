@@ -7,44 +7,51 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "CropDetails")
+@NamedQuery(name = "getCrops", query = "Select c from Crop c")
+
 public class Crop {
 	@Id
 	@GeneratedValue
-	@Column(name = "Cropid")
+	@Column(name = "Crop_id")
 	private int id;
-	
+
+	@Column(name = "Crop_name")
 	private String name;
-	
+
+	@Column(name = "Crop_type")
 	private String cropType;
-	
+
+	@Column(name = "Fertilizer_Type")
 	private String fertilizerType;
-	
+
+	@Column(name = "quantity")
 	private int quantity;
-	
-	private double soilPH;
-	
-	private LocalDate dateAddedOn;
-	
+
+	@Column(name = "soilPh")
+	private double soilPh;
+
+	@Column(name = "Base_Price")
 	private double basePrice;
-	
-	private int farmerId;
-	
+
+	@Column(name = "status")
 	private String status;
-	
+
+	@Column(name = "start_Date")
 	private LocalDate startDate;
-	
+
+	@Column(name = "end_Date")
 	private LocalDate endDate;
 
-	@OneToOne
-	@JoinColumn(name= "User_id") //FK
+	@ManyToOne
+	@JoinColumn(name = "Farmer_id") // FK
 	private User user;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -85,20 +92,12 @@ public class Crop {
 		this.quantity = quantity;
 	}
 
-	public double getSoilPH() {
-		return soilPH;
+	public double getSoilPh() {
+		return soilPh;
 	}
 
-	public void setSoilPH(double soilPH) {
-		this.soilPH = soilPH;
-	}
-
-	public LocalDate getDateAddedOn() {
-		return dateAddedOn;
-	}
-
-	public void setDateAddedOn(LocalDate dateAddedOn) {
-		this.dateAddedOn = dateAddedOn;
+	public void setSoilPh(double soilPh) {
+		this.soilPh = soilPh;
 	}
 
 	public double getBasePrice() {
@@ -107,14 +106,6 @@ public class Crop {
 
 	public void setBasePrice(double basePrice) {
 		this.basePrice = basePrice;
-	}
-
-	public int getFarmerId() {
-		return farmerId;
-	}
-
-	public void setFarmerId(int farmerId) {
-		this.farmerId = farmerId;
 	}
 
 	public String getStatus() {
@@ -140,7 +131,13 @@ public class Crop {
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
-	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 }
-
-

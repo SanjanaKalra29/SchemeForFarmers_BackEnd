@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
+import com.lti.dto.RegisterDto;
 import com.lti.entity.User;
 import com.lti.repository.UserRepository;
 import com.lti.service.UserService;
@@ -26,6 +27,12 @@ class SchemeforfarmersapiApplicationTests {
 
 	@Test
 	void addUser() {
+
+		RegisterDto regdto = new RegisterDto();
+
+		User u = new User();
+		u.setId(40);
+
 //
 //		User u = new User();
 //
