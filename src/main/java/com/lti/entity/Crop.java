@@ -11,10 +11,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-/*
 @Entity
-@Table(name = "CropDetails")*/
+@Table(name = "CropDetails")
+@NamedQuery(name = "getCrops", query = "Select c from Crop c where c.status='Available' and c.startDate < sysdate and c.endDate > sysdate")
+
 public class Crop {
 	@Id
 	@GeneratedValue
@@ -42,9 +44,15 @@ public class Crop {
 	@Column(name = "status")
 	private String status;
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Column(name = "start_Date")
 	private LocalDate startDate;
 
+<<<<<<< HEAD
+=======
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	@Column(name = "end_Date")
+>>>>>>> 604020f28bed201a9a6c341154c4f3074fe5f198
 	private LocalDate endDate;
 	@OneToOne
 	@JoinColumn(name= "User_id") //FK

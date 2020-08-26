@@ -41,5 +41,4 @@ public class CropTest {
 		//assertThat(SavedCrop).isNotNull();
 
 
-	}
 }
