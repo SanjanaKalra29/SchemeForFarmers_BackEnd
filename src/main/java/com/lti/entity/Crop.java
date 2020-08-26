@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "CropDetails")
-@NamedQuery(name = "getCrops", query = "Select c from Crop c where c.status='Available' ")
+@NamedQuery(name = "getCrops", query = "Select c from Crop c where c.status='Available' and c.startDate < sysdate and c.endDate > sysdate")
 
 public class Crop {
 	@Id

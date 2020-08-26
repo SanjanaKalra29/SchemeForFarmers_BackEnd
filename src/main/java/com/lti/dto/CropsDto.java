@@ -2,19 +2,18 @@ package com.lti.dto;
 
 import java.util.List;
 
-import com.lti.entity.Crop;
 import com.lti.status.Status;
 
 public class CropsDto {
 
-	private List<Crop> crops;
+	private List<ShowAllCropsDto> crops;
 	private Status status;
 
-	public List<Crop> getCrops() {
+	public List<ShowAllCropsDto> getCrops() {
 		return crops;
 	}
 
-	public void setCrops(List<Crop> crops) {
+	public void setCrops(List<ShowAllCropsDto> crops) {
 		this.crops = crops;
 	}
 

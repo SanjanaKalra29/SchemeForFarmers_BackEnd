@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.CropDto;
 import com.lti.dto.CropsDto;
-import com.lti.entity.Crop;
+import com.lti.dto.ShowAllCropsDto;
 import com.lti.exception.CropServiceException;
 import com.lti.service.CropService;
 import com.lti.status.Status;
@@ -44,7 +44,7 @@ public class CropController {
 	@GetMapping(path = "/crops")
 	public CropsDto register() {
 		try {
-			List<Crop> crops = cropService.getCrops();
+			List<ShowAllCropsDto> crops = cropService.getCrops();
 			CropsDto cropdto = new CropsDto();
 			cropdto.setCrops(crops);
 			Status status = new Status();

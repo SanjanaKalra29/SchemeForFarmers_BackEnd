@@ -1,5 +1,6 @@
 package com.lti.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.lti.dto.CropDto;
+import com.lti.dto.ShowAllCropsDto;
 import com.lti.entity.Crop;
 import com.lti.entity.User;
 import com.lti.exception.CropServiceException;
@@ -41,12 +43,24 @@ public class CropServiceImpl implements CropService {
 	}
 
 	@Override
-	public List<Crop> getCrops() {
+	public List<ShowAllCropsDto> getCrops() {
 		try {
+			List<ShowAllCropsDto> AvailableCrops = new ArrayList<ShowAllCropsDto>();
 			List<Crop> crops = cropRepo.findCrops();
-			return crops;
+			for (Crop crop : crops) {
+				ShowAllCropsDto scrop = new ShowAllCropsDto();
+				scrop.setId(crop.getId());
+				scrop.setCropType(crop.getCropType());
+				scrop.setFertilizerType(crop.getFertilizerType());
+				scrop.setBasePrice(crop.getBasePrice());
+				scrop.setQuantity(crop.getQuantity());
+				scrop.setFullname(crop.getUser().getFullname());
+				scrop.setEndDate(crop.getEndDate());
+				AvailableCrops.add(scrop);
+			}
+			return AvailableCrops;
 		} catch (EmptyResultDataAccessException e) {
-			throw new CropServiceException("You are not allowed to add Crop");
+			throw new CropServiceException("No crops available");
 		}
 	}
 }
