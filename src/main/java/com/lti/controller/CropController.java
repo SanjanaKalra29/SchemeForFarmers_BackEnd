@@ -42,7 +42,7 @@ public class CropController {
 	}
 
 	@GetMapping(path = "/crops")
-	public CropsDto register() {
+	public CropsDto getCrops() {
 		try {
 			List<ShowAllCropsDto> crops = cropService.getCrops();
 			CropsDto cropdto = new CropsDto();

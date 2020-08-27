@@ -17,6 +17,16 @@ public class ShowAllCropsDto {
 
 	private double basePrice;
 
+	private double currentPrice;
+
+	public double getCurrentPrice() {
+		return currentPrice;
+	}
+
+	public void setCurrentPrice(double currentPrice) {
+		this.currentPrice = currentPrice;
+	}
+
 	private String fullname;
 
 	private LocalDate endDate;
