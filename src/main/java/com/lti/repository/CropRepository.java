@@ -16,4 +16,6 @@ public interface CropRepository {
 
 	List<Crop> findExpiredCrops();
 
+	List<Crop> findSoldCropsbyFarmerId(int id);
+
 }

@@ -50,4 +50,12 @@ public class CropRepositoryImpl implements CropRepository {
 		return crops;
 	}
 
+	@Override
+	public List<Crop> findSoldCropsbyFarmerId(int id) {
+
+		List crops = entityManager.createQuery("select c from Crop c where c.user.id = :cid and c.status = 'Sold'")
+				.setParameter("cid", id).getResultList();
+		return crops;
+	}
+
 }

@@ -51,6 +51,20 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 
 	@Override
+	public String getUserRole(int id) {
+
+		return (String) entityManager.createQuery("select u.role from User u where u.id = :em").setParameter("em", id)
+				.getSingleResult();
+	}
+
+	@Override
+	public String getUserName(int id) {
+
+		return (String) entityManager.createQuery("select u.fullname from User u where u.id = :em")
+				.setParameter("em", id).getSingleResult();
+	}
+
+	@Override
 	public User findbyId(int id) {
 		return entityManager.find(User.class, id);
 	}
