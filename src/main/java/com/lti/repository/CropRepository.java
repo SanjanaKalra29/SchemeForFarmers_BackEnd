@@ -14,4 +14,6 @@ public interface CropRepository {
 
 	double getBasePrice(int id);
 
+	List<Crop> findExpiredCrops();
+
 }
