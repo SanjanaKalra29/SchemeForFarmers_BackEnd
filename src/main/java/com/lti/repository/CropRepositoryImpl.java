@@ -35,4 +35,10 @@ public class CropRepositoryImpl implements CropRepository {
 		return entityManager.find(Crop.class, id);
 	}
 
+	@Override
+	public double getBasePrice(int id) {
+		return (Double) entityManager.createQuery("select b.basePrice from Crop b where b.id = :cid")
+				.setParameter("cid", id).getSingleResult();
+	}
+
 }

@@ -10,4 +10,6 @@ public interface BidRepository {
 
 	void save(Bid bid);
 
+	double maxbid(int id);
+
 }

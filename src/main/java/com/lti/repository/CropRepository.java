@@ -12,4 +12,6 @@ public interface CropRepository {
 
 	Crop findbyId(int id);
 
+	double getBasePrice(int id);
+
 }

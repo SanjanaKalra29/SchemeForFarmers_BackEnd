@@ -30,4 +30,11 @@ public class BidRepositoryImpl implements BidRepository {
 		entityManager.persist(bid);
 
 	}
+
+	@Override
+	@Transactional
+	public double maxbid(int id) {
+		return (double) entityManager.createQuery("select COALESCE(MAX(b.amount),0) from Bid b where b.crop.id = :cid")
+				.setParameter("cid", id).getSingleResult();
+	}
 }

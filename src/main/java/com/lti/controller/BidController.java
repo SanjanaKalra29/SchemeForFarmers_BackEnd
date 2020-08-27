@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lti.dto.PlaceBidDto;
 import com.lti.dto.ShowBidsByCropId;
 import com.lti.dto.bidsDto;
+import com.lti.dto.maxbid;
 import com.lti.exception.CropServiceException;
 import com.lti.service.BidService;
 import com.lti.status.Status;
@@ -44,6 +45,30 @@ public class BidController {
 			status.setMessage(e.getMessage());
 			bids.setStatus(status);
 			return bids;
+
+		}
+	}
+
+	@GetMapping("/bid")
+	public maxbid getmaxBidbycropid(@RequestParam("cropid") Integer cropid) {
+		try {
+			double amount = bidservice.getBid(cropid);
+			Status status = new Status();
+			status.setStatus(com.lti.status.Status.StatusType.SUCCESS);
+			status.setMessage("Bids Available");
+			maxbid bid = new maxbid();
+			bid.setAmount(amount);
+			bid.setStatus(status);
+			return bid;
+
+		} catch (CropServiceException e) {
+
+			maxbid bid = new maxbid();
+			Status status = new Status();
+			status.setStatus(com.lti.status.Status.StatusType.FAILURE);
+			status.setMessage(e.getMessage());
+			bid.setStatus(status);
+			return bid;
 
 		}
 	}

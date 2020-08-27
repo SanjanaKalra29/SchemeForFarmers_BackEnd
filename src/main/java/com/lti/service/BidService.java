@@ -10,5 +10,8 @@ public interface BidService {
 	List<bidsDto> getBids(int id);
 
 	boolean savebid(PlaceBidDto placebiddto);
+
+	double getBid(int id);
+
 }
 
