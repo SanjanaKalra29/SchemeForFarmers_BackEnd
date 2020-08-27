@@ -49,6 +49,25 @@ public class BidServiceImpl implements BidService {
 	}
 
 	@Override
+	public double getBid(int id) {
+		try {
+			double amount = bidrepo.maxbid(id);
+			System.out.println(amount);
+			if (amount == 0) {
+				amount = cropRepo.getBasePrice(id);
+			}
+			if (amount == 0) {
+
+				throw new CropServiceException("Crop not found");
+			}
+			return amount;
+
+		} catch (EmptyResultDataAccessException e) {
+			throw new CropServiceException("No Bid available");
+		}
+	}
+
+	@Override
 	public boolean savebid(PlaceBidDto placebiddto) {
 		try {
 			Bid bid = new Bid();

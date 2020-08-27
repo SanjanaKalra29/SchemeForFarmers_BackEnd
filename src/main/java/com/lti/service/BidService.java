@@ -11,4 +11,6 @@ public interface BidService {
 
 	boolean savebid(PlaceBidDto placebiddto);
 
+	double getBid(int id);
+
 }
