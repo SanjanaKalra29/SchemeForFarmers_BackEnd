@@ -23,6 +23,7 @@ public class CropTest {
 
 	@Autowired
 	private CropService cropServ;
+
 	@Autowired
 	private CropRepository cropRepo;
 
@@ -34,6 +35,7 @@ public class CropTest {
 		c.setCropType("Rabi");
 		c.setFertilizerType("Urea");
 		c.setQuantity(123);
+
 		c.setSoilPh(7.19);
 		c.setBasePrice(208);
 		c.setStatus("Sold");
@@ -47,7 +49,5 @@ public class CropTest {
 		cropServ.register(dto);
 		Crop crop = cropRepo.getcropbydetails(1161, 123, 208);
 		assertThat(crop).isNotNull();
-
 	}
-
 }

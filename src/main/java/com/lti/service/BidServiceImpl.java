@@ -1,5 +1,4 @@
 package com.lti.service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,4 +96,5 @@ public class BidServiceImpl implements BidService {
 			throw new BidServiceException("Failed to add bid");
 		}
 	}
+
 }

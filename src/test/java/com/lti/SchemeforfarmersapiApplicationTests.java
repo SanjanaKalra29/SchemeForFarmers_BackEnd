@@ -93,10 +93,13 @@ class SchemeforfarmersapiApplicationTests {
 		userServ.register(regdto);
 
 		assertThat(userRepo.isUserAvailable("sanjana@lti.com")).isTrue();
+		RegisterDto dto = new RegisterDto();
+
 	}
 
 	@Test
 	void loginUser() {
+
 		User SavedUser = userServ.login("ayush@lti.com", "Farmer");
 		assertThat(SavedUser).isNotNull();
 	}

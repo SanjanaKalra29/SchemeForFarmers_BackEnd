@@ -14,3 +14,4 @@ public interface BidService {
 	double getBid(int id);
 
 }
+

@@ -1,6 +1,6 @@
 package com.lti.entity;
-
 import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -59,5 +59,4 @@ public class Bid {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-
 }
