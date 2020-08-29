@@ -7,15 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "CropDetails")
-@NamedQuery(name = "getCrops", query = "Select c from Crop c where c.status='Available' ")
+@NamedQuery(name = "getCrops", query = "Select c from Crop c where c.status='Available' and c.startDate < sysdate and c.endDate > sysdate")
 
 public class Crop {
 	@Id
@@ -48,12 +47,14 @@ public class Crop {
 	@Column(name = "start_Date")
 	private LocalDate startDate;
 
+
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Column(name = "end_Date")
-	private LocalDate endDate;
 
-	@ManyToOne
-	@JoinColumn(name = "Farmer_id") // FK
+	private LocalDate endDate;
+	@OneToOne
+	@JoinColumn(name= "User_id") //FK
+
 	private User user;
 
 	public int getId() {

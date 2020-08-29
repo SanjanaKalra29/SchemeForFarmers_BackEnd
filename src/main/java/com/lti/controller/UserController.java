@@ -55,6 +55,7 @@ public class UserController {
 			loginstatus.setMessage("Login Sucessful");
 			loginstatus.setUserId(user.getId());
 			loginstatus.setName(user.getFullname());
+			loginstatus.setRole(user.getRole());
 			return loginstatus;
 
 		} catch (UserServiceException e) {

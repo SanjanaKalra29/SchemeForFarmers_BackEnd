@@ -20,4 +20,8 @@ public interface UserRepository {
 
 	void saveAddress(Address address);
 
+	String getUserRole(int id);
+
+	String getUserName(int id);
+
 }

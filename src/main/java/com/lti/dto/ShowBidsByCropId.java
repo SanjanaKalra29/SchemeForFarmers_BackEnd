@@ -4,17 +4,17 @@ import java.util.List;
 
 import com.lti.status.Status;
 
-public class CropsDto {
+public class ShowBidsByCropId {
 
-	private List<ShowAllCropsDto> crops;
+	private List<bidsDto> bids;
 	private Status status;
 
-	public List<ShowAllCropsDto> getCrops() {
-		return crops;
+	public List<bidsDto> getBids() {
+		return bids;
 	}
 
-	public void setCrops(List<ShowAllCropsDto> crops) {
-		this.crops = crops;
+	public void setBids(List<bidsDto> bids) {
+		this.bids = bids;
 	}
 
 	public Status getStatus() {
@@ -24,5 +24,4 @@ public class CropsDto {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-
 }

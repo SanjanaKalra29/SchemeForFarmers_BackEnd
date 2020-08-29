@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import com.lti.dto.RegisterDto;
+import com.lti.entity.Address;
+import com.lti.entity.LandDetails;
 import com.lti.entity.User;
 import com.lti.repository.UserRepository;
 import com.lti.service.UserService;
@@ -26,40 +28,79 @@ class SchemeforfarmersapiApplicationTests {
 	private UserRepository userRepo;
 
 	@Test
-	void addUser() {
+	void addFarmer() {
 
 		RegisterDto regdto = new RegisterDto();
 
 		User u = new User();
-		u.setId(40);
+		u.setFullname("Ayush");
+		u.setRole("Farmer");
+		u.setEmail("ayush@lti.com");
+		u.setPhoneno(9650500511L);
+		u.setAadharcard(180040002000L);
+		u.setAccountNumber(123456789012L);
+		u.setPassword("Farmer");
+		u.setIfsc_Code("SB000001");
+		u.setPancard("PSKPC1234");
 
-//
-//		User u = new User();
-//
-//		u.setId(40);
-//		u.setFirstname("Amit");
-//		u.setLastname("Patel");
-//		u.setRole("Farmer");
-//		u.setDob(LocalDate.of(1981, 1, 31));
-//		u.setEmail("amt@li");
-//		u.setPhoneno(90261689);
-//		u.setGender("Male");
-//		u.setPassword("12345");
-//		u.setAddress("abc nagar");
-//		u.setAadharcard(1212125);
-//		u.setUsername("amit");
-//		u.setPassword("Amit@123");
-//		u.setPancard("AE123123");
-//
-//		userServ.register(u);
-//
-//		User SavedUser = userRepo.findbyId(u.getId());
-//		assertThat(SavedUser).isNotNull();
+		Address addr = new Address();
+		addr.setAddressLine1("456/21 Streetno.2");
+		addr.setAddressLine2("Hinjewadi");
+		addr.setCity("Gurgaon");
+		addr.setPincode(12201);
+		addr.setState("Haryana");
+
+		LandDetails landdetails = new LandDetails();
+		landdetails.setAddress("123 plot no.2");
+		landdetails.setArea(123.05);
+		landdetails.setPincode(122001);
+
+		regdto.setUser(u);
+		regdto.setLanddetails(landdetails);
+		regdto.setAddress(addr);
+
+		userServ.register(regdto);
+
+		assertThat(userRepo.isUserAvailable("ayush@lti.com")).isTrue();
+	}
+
+	@Test
+	void addBidder() {
+
+		RegisterDto regdto = new RegisterDto();
+
+		User u = new User();
+		u.setFullname("Sanjana");
+		u.setRole("Bidder");
+		u.setEmail("sanjana@lti.com");
+		u.setPhoneno(9650500511L);
+		u.setAadharcard(180040003000L);
+		u.setAccountNumber(123456789123L);
+		u.setPassword("Bidder");
+		u.setIfsc_Code("SB000001");
+		u.setPancard("PSKC1234");
+
+		Address addr = new Address();
+		addr.setAddressLine1("456/21 Streetno.2");
+		addr.setAddressLine2("Hinjewadi");
+		addr.setCity("Gurgaon");
+		addr.setPincode(12201);
+		addr.setState("Haryana");
+
+		regdto.setUser(u);
+		regdto.setAddress(addr);
+
+		userServ.register(regdto);
+
+		assertThat(userRepo.isUserAvailable("sanjana@lti.com")).isTrue();
+		RegisterDto dto = new RegisterDto();
+
 	}
 
 	@Test
 	void loginUser() {
-		User SavedUser = userServ.login("amt@li", "Amit@123");
+
+		User SavedUser = userServ.login("ayush@lti.com", "Farmer");
 		assertThat(SavedUser).isNotNull();
 	}
 }
