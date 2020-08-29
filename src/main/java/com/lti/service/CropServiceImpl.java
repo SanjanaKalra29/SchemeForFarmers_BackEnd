@@ -1,5 +1,6 @@
 package com.lti.service;
 
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,17 +28,28 @@ public class CropServiceImpl implements CropService {
 	public void register(CropDto cropdto) {
 
 		try {
-			System.out.println(cropdto.getFarmerid());
 			User farmer = userRepo.findbyId(cropdto.getFarmerid());
-			System.out.println(farmer.getRole() + " ROle");
+
 			if (farmer.getRole().equals("Bidder")) {
 				throw new CropServiceException("Bidder not allowed to add Crop");
 			}
 			Crop crop = cropdto.getCrop();
+
+			long daysBetween = ChronoUnit.DAYS.between(crop.getStartDate(), crop.getEndDate());
+			if (daysBetween > 30) {
+				throw new CropServiceException("The bid period cannot be greater than 30 days");
+			}
+			if (cropRepo.getcropcountbydetails(cropdto.getFarmerid(), crop.getQuantity(), crop.getBasePrice(),
+					crop.getName())) {
+				throw new CropServiceException("Similar request has been made already");
+			}
 			crop.setUser(farmer);
+
 			cropRepo.save(crop);
+
 		} catch (EmptyResultDataAccessException e) {
-			throw new CropServiceException("You are not allowed to add Crop");
+			System.out.println(e.getMessage());
+			throw new CropServiceException("Only a registered farmer can add crop");
 		}
 
 	}

@@ -76,8 +76,6 @@ public class BidController {
 	@PostMapping("/placebids")
 	public Status placebid(@RequestBody PlaceBidDto placebiddto) {
 		try {
-			System.out.println(placebiddto.getCropid());
-			System.out.println(placebiddto.getUserid());
 			bidservice.savebid(placebiddto);
 			Status status = new Status();
 			status.setStatus(com.lti.status.Status.StatusType.SUCCESS);

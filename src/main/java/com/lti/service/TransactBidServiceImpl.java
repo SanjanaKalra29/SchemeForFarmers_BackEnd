@@ -74,8 +74,6 @@ public class TransactBidServiceImpl implements TransactBidsService {
 
 					TransactBids bids = transactrepo.getTransactionByCropId(crop.getId());
 
-					System.out.println(bids.getId());
-
 					NotificationDto dto = new NotificationDto();
 
 					dto.setAmount(bids.getAmount());

@@ -71,12 +71,26 @@ public class BidServiceImpl implements BidService {
 	public boolean savebid(PlaceBidDto placebiddto) {
 		try {
 			Bid bid = new Bid();
+
 			Crop crop = cropRepo.findbyId(placebiddto.getCropid());
 
 			User bidder = userRepo.findbyId(placebiddto.getUserid());
+
 			bid.setCrop(crop);
 			bid.setUser(bidder);
+
+			double currentbid = bidrepo.maxbid(placebiddto.getCropid());
+
+			if (currentbid == 0.0) {
+				currentbid = crop.getBasePrice();
+			}
+
+			if (currentbid + 99.9 > placebiddto.getAmount()) {
+
+				throw new BidServiceException("Bid amount should be atleast 100 greater than current bid amount");
+			}
 			bid.setAmount(placebiddto.getAmount());
+
 			bidrepo.save(bid);
 			return true;
 		} catch (EmptyResultDataAccessException e) {

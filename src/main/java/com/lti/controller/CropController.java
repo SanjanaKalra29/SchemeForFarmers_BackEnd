@@ -29,7 +29,7 @@ public class CropController {
 			cropService.register(cropdto);
 			Status status = new Status();
 			status.setStatus(com.lti.status.Status.StatusType.SUCCESS);
-			status.setMessage("Registration Successful");
+			status.setMessage("Crop added Successfully");
 			return status;
 		} catch (CropServiceException e) {
 

@@ -58,4 +58,23 @@ public class CropRepositoryImpl implements CropRepository {
 		return crops;
 	}
 
+	@Override
+	public Crop getcropbydetails(int farmerid, int quantity, double price) {
+
+		Crop crop = (Crop) entityManager
+				.createQuery("select c from Crop c where c.user.id = :cid and c.quantity = :q and c.basePrice = :cp")
+				.setParameter("cid", farmerid).setParameter("q", quantity).setParameter("cp", price).getSingleResult();
+		return crop;
+	}
+
+	@Override
+	public boolean getcropcountbydetails(int farmerid, int quantity, double price, String name) {
+
+		return (long) entityManager.createQuery(
+				"select count(c.id) from Crop c where c.user.id = :cid and c.quantity = :q and c.basePrice = :cp and c.status='Available' and c.name= :n")
+				.setParameter("cid", farmerid).setParameter("q", quantity).setParameter("cp", price)
+				.setParameter("n", name).getSingleResult() == 1 ? true : false;
+
+	}
+
 }
